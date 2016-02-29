@@ -139,7 +139,7 @@ app.controller("EnergyController", function($scope, $interval, $rootScope) {
 
     };
 
-    $rootScope.addEnergyPSLoop()
+    $rootScope.addEnergyPSLoop();
 
 
     $rootScope.addEnergyPS = function addEnergyPS() {
