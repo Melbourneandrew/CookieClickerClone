@@ -6,7 +6,7 @@ config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
 function config($stateProvider, $urlRouterProvider, $locationProvider) {
     
-        $urlRouterProvider.otherwise("/home");
+        $urlRouterProvider.otherwise("/energy");
         
 
         /* Page list:
@@ -27,30 +27,31 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
         
 
         $stateProvider
-            .state('home', {
-                url: "/home",
+            .state('energy', {
+                url: "/energy",
                 templateUrl: "/html/EnegryClickerPage.html",
                 controller: "EnergyController",
             })
-    
+            .state('oil', {
+                url: "/oil",
+                templateUrl: "/html/OilClickerPage.html",
+                controller: "EnergyController",
+            })
+            .state('population', {
+                url: "/population",
+                templateUrl: "/html/PopClickerPage.html",
+                controller: "EnergyController",
+            })
+            .state('money', {
+                url: "/money",
+                templateUrl: "/html/MoneyClickerPage.html",
+                controller: "EnergyController",
+            })
+
 } 
 
 app.controller("EnergyController", function($scope, $interval, $rootScope) {
-
-
-
-    /*START OF Energy VARS
-    $scope.Energy = 0;
-    $scope.maxEnergy = 500;
-    $scope.EnergyPS = 0;
-    $scope.powerPlantCount = 0;
-     anything followed by "Eff" is that structures efficiency. or how much of its currency it 
-    produces per second. I am documenting my code be proud of me 
-    $scope.powerPlantEff = 1;
-    $scope.powePlantCost = $scope.powerPlantCount * 1.3;
     
-    */
-
     /*END OF Energy VARS*/
 
     /* Fields for module can include
@@ -98,11 +99,7 @@ app.controller("EnergyController", function($scope, $interval, $rootScope) {
         Count: 0,
     }]
     
-
-
-    //$scope.Cats = Many cats
-    //$scope.Buy(cat) 
-
+    
     $scope.EditModule = function(oldValue, newValue) {
         for (var i = 0; i < $rootScope.Modules.length; i++) {
             if ($rootScope.Modules[i].Name == oldValue.Name) {
@@ -134,12 +131,6 @@ app.controller("EnergyController", function($scope, $interval, $rootScope) {
 
     };
 
-    /*$scope.buyPowerPlant = function buyPowerPlant() {
-        $scope.powerPlantCount += 1;
-        $scope.EnergyPS += $scope.powerPlantEff;
-        $scope.addEnergyPSLoop();
-
-    }; */
 
     $rootScope.addEnergyPSLoop = function addEnergyPSLoop() {
         $interval(function() {
