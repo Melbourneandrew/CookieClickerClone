@@ -1,0 +1,46 @@
+
+    <div class="headContainer">
+        <div></div>
+    </div>
+    <div class="bodyRow">
+        <!-- Designated space for ads located on the far right. !-->
+        <div class="adCollumn"></div>
+        <div class="vertSpacer"></div>
+        <!-- Middle block, contains all the purchaseable things. !-->
+        <div class="dataCollumn">
+            <div class="spacer"></div>
+            <!-- ng-repeat="x in xContainer" !-->
+            <!-- for(var i=0; i< Modules.length; i++){ Module = Modules[i] } !-->
+            <div class="buyableItem" ng-repeat="Module in $root.Modules">
+                <div class="buyableCount">
+                    <span>{{Module.Count}}</span>
+                </div>
+                <div class="vertSpacer"></div>
+                <div class="buyableIcon"></div>
+                <div class="vertSpacer"></div>
+                <div class="itemName">{{Module.Name}}
+                    <br>EPS: {{Module.EnergyPS}}</div>
+                <div class="itemDesc">The power plant, although inefficent, is the bread and butter of Energy production for any devloping nation</div>
+                <div class="vertSpacer"></div>
+                <div class="itemCost">Cost: {{Module.Cost}}</div>
+                <div class="vertSpacer"></div>
+                <button ng-click="Buy(Module)">Buy</button>
+            </div>
+            
+        </div>
+        <div class="vertSpacer"></div>
+        <!-- Far Left. Contains the clicker, total unit ammount, and unit per second. !-->
+        <div class="clickerCollumn">
+            <div>
+                <h3 class="clickableTitle">Energy</h3>
+            </div>
+            <div class="clickable">
+                <img id="EnergyClicker" src="images/lightning-icon.png">
+                <button ng-click="addEnergy()">Add Energy</button>
+            </div>
+            <div class="EnergyCount">
+                {{$root.Progress.Energy}} / {{$root.Progress.MaxEnergy}}
+            </div>
+            <div>Energy Per Second (EPS): {{$root.Progress.EnergyPS}}</div>
+        </div>
+
