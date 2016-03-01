@@ -1,6 +1,4 @@
 
-    <div class="headContainer">
-        <div></div>
     </div>
     <div class="bodyRow">
         <!-- Designated space for ads located on the far right. !-->
@@ -11,7 +9,7 @@
             <div class="spacer"></div>
             <!-- ng-repeat="x in xContainer" !-->
             <!-- for(var i=0; i< Modules.length; i++){ Module = Modules[i] } !-->
-            <div class="buyableItem" ng-repeat="Module in $root.Modules">
+            <div class="buyableItem" ng-repeat="Module in $root.Modules" ng-show="Module.Category == 'money'">
                 <div class="buyableCount">
                     <span>{{Module.Count}}</span>
                 </div>
@@ -19,10 +17,10 @@
                 <div class="buyableIcon"></div>
                 <div class="vertSpacer"></div>
                 <div class="itemName">{{Module.Name}}
-                    <br>EPS: {{Module.EnergyPS}}</div>
-                <div class="itemDesc">The power plant, although inefficent, is the bread and butter of Energy production for any devloping nation</div>
+                    <br>MPS: {{Module.MoneyPS}}</div>
+                <div class="itemDesc">{{Module.Description}}</div>
                 <div class="vertSpacer"></div>
-                <div class="itemCost">Cost: {{Module.Cost}}</div>
+                <div class="itemCost">Cost: {{Module.MoneyCost}}</div>
                 <div class="vertSpacer"></div>
                 <button ng-click="Buy(Module)">Buy</button>
             </div>
@@ -36,11 +34,13 @@
             </div>
             <div class="clickable">
                 <img id="EnergyClicker" src="images/money-icon.png">
-                <button ng-click="addEnergy()">Add Energy</button>
+                <button ng-click="addMoney()">Add Money</button>
+                <button ng-click="save()">Save</button>
+                <button ng-click="load()">Load</button>
             </div>
             <div class="EnergyCount">
-                {{$root.Progress.Energy}} / {{$root.Progress.MaxEnergy}}
+                {{$root.Progress.Money}} / {{$root.Progress.MaxMoney}}
             </div>
-            <div>Energy Per Second (EPS): {{$root.Progress.EnergyPS}}</div>
+            <div>Money Per Second (MPS): {{$root.Progress.MoneyPS}}</div>
         </div>
 

@@ -1,15 +1,58 @@
 <!DOCTYPE html>
 <html ng-app="app">
-    <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js"></script>
-        <script src="/js/ProjectC.js"></script>
-        <link rel="stylesheet" type="text/css" href="/css/ProjectC.css">
-        <link  href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-        <link  href='https://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
-    </head>
-    
-    <body>
-        <div ui-view></div>
-    </body>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js"></script>
+
+    <script type="text/javascript" src="/js/main.js"></script>
+    <script type="text/javascript" src="/js/controllers/EnergyController.js"></script>
+    <script type="text/javascript" src="/js/factory/LoopFactory.js"></script>
+    <script type="text/javascript" src="/js/factory/SaveFactory.js"></script>
+    <script type="text/javascript" src="/js/factory/ModuleFactory.js"></script>=
+    <script type="text/javascript" src="/js/routes.js"></script>
+    <script type="text/javascript" src="/js/controllers/OilController.js"></script>
+    <script type="text/javascript" src="/js/controllers/PopulationController.js"></script>
+    <script type="text/javascript" src="/js/controllers/MoneyController.js"></script>
+
+    <!-- If your using a build system, you would add just add the bundled file !-->
+    <!-- Build sytem
+           Concat all JS files
+           Minify all js files
+           place in /dist folder
+        !-->
+
+
+    <link rel="stylesheet" type="text/css" href="/css/ProjectC.css">
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <div class="headContainer">
+        <div class="navBar">
+            <div class="navItem" ui-sref="energy" flex flex-order=1>
+                <p class="navText">Energy</p>
+            </div>
+            <div class="vertSpacer" flex flex-order=2></div>
+            <div class="navItem" ui-sref="oil" flex flex-order=3>
+                <p class="navText">Oil</p>
+            </div>
+            <div class="vertSpacer" flex flex-order=4></div>
+            <div class="navItem" flex flex-order=5>
+                <p class="navText">Home</p>
+            </div>
+            <div class="vertSpacer" flex flex-order=6></div>
+            <div class="navItem" ui-sref="money" flex flex-order=7>
+                <p class="navText">Money</p>
+            </div>
+            <div class="vertSpacer" flex flex-order=8></div>
+            <div class="navItem" ui-sref="population" flex flex-order=9>
+                <p class="navText">Population</p>
+            </div>
+        </div>
+    </div>
+    <div ui-view></div>
+</body>
+
 </html>

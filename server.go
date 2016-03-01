@@ -36,3 +36,9 @@ func serveIndex(res http.ResponseWriter, req *http.Request, _ httprouter.Params)
 	}
 	fmt.Fprint(res, string(webpage))
 }
+
+/* 
+Open bash on directory
+$go run server.go
+
+*/
