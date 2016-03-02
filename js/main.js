@@ -14,75 +14,137 @@ app.run(function($rootScope, SaveFactory, LoopFactory){
         Description: descripition
     */
     
+    
+    /*
+        CostPS: {
+            Oil:1
+            
+            
+        },
+        Cost: {
+            Oil: 1
+        }
+        
+        OilCost
+        OilCostPS
+    */
+    
       $rootScope.Modules = [{
             Name: "Power Plant",
             PopRequirement: 1,
-            EnergyPS: 2,
-            OilPS: 0,
-            MoneyPS: 0,
-            MoneyCost: 0,
-            EnergyCost: 1,
-            OilCost: 0,
+            Cost: {
+                Money: 1
+            },
+            CostPS: {
+                Oil: 1
+            },
+            Produces: {
+                Energy: 1
+            },
             Count: 0,
             Description: "Not Photosynthetic",
             Category: "energy",
         }, {
             Name: "Solar Field",
             PopRequirement: 5,
-            EnergyPS: 5,
-            OilPS: 0,
-            MoneyPS: 0,
-            MoneyCost: 0,
-            EnergyCost: 1,
-            OilCost: 0,
+            Cost: {
+                Energy: 1
+            },
+            CostPS: {
+
+            },
+            Produces: {
+                Energy: 5
+            },
             Count: 0,
             Description: "Sun bathing, for energy",
             Category: "energy",
         }, {
             Name: "Nuclear Generator",
             PopRequirement: 15,
-            EnergyPS: 100,
-            OilPS: 0,
-            MoneyPS: 0,
-            MoneyCost: 0,
-            EnergyCost: 1,
-            OilCost: 0,
-            OilProduces: 0,
+            Cost: {
+                Energy: 500
+            },
+            CostPS: {
+                Money: 10
+            },
+            Produces: {
+                Energy: 50
+            },
             Count: 0,
-            Description: "It has been 1 days sence total reactor melt down",
+            Description: "It has been 1 days since total reactor melt down",
             Category: "energy",
         }, 
         {
             Name: "Printer",
             PopRequirement: 1,
-            EnergyPS: 0,
-            OilPS: 0,
-            MoneyPS: 1,
-            MoneyCost: 1,
-            EnergyCost: 0,
-            OilCost: 0,
+            Cost: {
+                Money: 1
+            },
+            CostPS: {
+                Energy: 1
+            },
+            Produces: {
+                Money: 1
+            },
             Count: 0,
             Description: "Don't get caught",
             Category: "money"
         },
         {
+            Name: "Bank",
+            PopRequirement: 1,
+            Cost: {
+                Money: 1
+            },
+            CostPS: {
+                
+            },
+            Produces: {
+                Money: 10
+            },
+            Count: 0,
+            Description: "Lehman Brothers joke",
+            Category: "money"
+        },
+        {
             Name: "Oil Rig",
             PopRequirement: 1,
-            EnergyPS: 0,
-            OilPS: 1,
-            MoneyPS: 0,
-            MoneyCost: 0,
-            EnergyCost: 0,
-            OilCost: 1,
+            Cost: {
+                Oil: 1
+            },
+            CostPS: {
+                Energy: 10,
+                Money: 5,
+            },
+            Produces: {
+                Oil: 10
+            },
             Count: 0,
             Description: "Don't worry about spilling it all",
+            Category: "oil"
+            
+        },
+        {
+            Name: "Fracking Operation",
+            PopRequirement: 1,
+            Cost: {
+                Money: 20
+            },
+            CostPS: {
+                Energy: 3,
+                Money: 5,
+            },
+            Produces: {
+                Oil: 1
+            },
+            Count: 0,
+            Description: "Who needs a clean water table?",
             Category: "oil"
             
         }
         
         ];
-        
-        $rootScope.ModulesOwned = [];
         
         
         SaveFactory.Load();
@@ -90,3 +152,18 @@ app.run(function($rootScope, SaveFactory, LoopFactory){
         LoopFactory.Load();
         
 })
+
+function HackIt(){
+    var scope = angular.element(document.getElementsByClassName("navBar")[0]).scope()
+    
+    scope.$root.Progress.MaxEnergy = 10000
+    scope.$root.Progress.MaxMoney = 10000
+    scope.$root.Progress.MaxOil = 10000
+    
+        
+    scope.$root.Progress.Energy = 10000
+    scope.$root.Progress.Money = 10000
+    scope.$root.Progress.Oil = 10000
+
+
+}

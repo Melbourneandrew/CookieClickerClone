@@ -1,46 +1,59 @@
+<div class="bodyRow">
+    <div class="adCollumn" flex flex-order="1">
+        <p>Oil: {{$root.Progress.Oil}}</p>
+        <p>Energy: {{$root.Progress.Energy}}</p>
+        <p>Money: {{$root.Progress.Money}}</p>
 
+        <p>Oil Use: {{$root.Progress.NegOilPS}}</p>
+        <p>Energy Use: {{$root.Progress.NegEnergyPS}}</p>
+        <p>Money Use: {{$root.Progress.NegMoneyPS}}</p>
 
-        <div></div>
+        <p>Oil Production: {{$root.Progress.OilPS}}</p>
+        <p>Energy Production: {{$root.Progress.EnergyPS}}</p>
+        <p>Money Production: {{$root.Progress.MoneyPS}}</p>
     </div>
-    <div class="bodyRow">
-        <!-- Designated space for ads located on the far right. !-->
-        <div class="adCollumn"></div>
-        <div class="vertSpacer"></div>
-        <!-- Middle block, contains all the purchaseable things. !-->
-        <div class="dataCollumn">
-            <div class="spacer"></div>
-            <!-- ng-repeat="x in xContainer" !-->
-            <!-- for(var i=0; i< Modules.length; i++){ Module = Modules[i] } !-->
-            <div class="buyableItem" ng-repeat="Module in $root.Modules" ng-show="Module.Category == 'oil'">
-                <div class="buyableCount">
-                    <span>{{Module.Count}}</span>
-                </div>
-                <div class="vertSpacer"></div>
-                <div class="buyableIcon"></div>
-                <div class="vertSpacer"></div>
-                <div class="itemName">{{Module.Name}}
-                    <br>OPS: {{Module.OilPS}}</div>
-                <div class="itemDesc">{{Module.Description}}</div>
-                <div class="vertSpacer"></div>
-                <div class="itemCost">Cost: {{Module.OilCost}}</div>
-                <div class="vertSpacer"></div>
-                <button ng-click="Buy(Module)">Buy</button>
+    <div class="vertSpacer"></div>
+    <!-- Middle block, contains all the purchaseable things. !-->
+    <div class="dataCollumn">
+        <div class="spacer"></div>
+        <!-- ng-repeat="x in xContainer" !-->
+        <!-- for(var i=0; i< Modules.length; i++){ Module = Modules[i] } !-->
+        <div class="buyableItem" ng-repeat="Module in $root.Modules" ng-show="Module.Category == 'oil'">
+            <div class="buyableCount">
+                <span>{{Module.Count}}</span>
             </div>
-            
-        </div>
-        <div class="vertSpacer"></div>
-        <!-- Far Left. Contains the clicker, total unit ammount, and unit per second. !-->
-        <div class="clickerCollumn">
-            <div>
-                <h3 class="clickableTitle">Oil</h3>
+            <div class="vertSpacer"></div>
+            <div class="buyableIcon"></div>
+            <div class="vertSpacer"></div>
+            <div class="itemName">{{Module.Name}}
+                <br>OPS: {{Module.Produces.Oil}}</div>
+            <div class="itemDesc">{{Module.Description}}</div>
+            <div class="vertSpacer"></div>
+            <div class="itemCost">Cost: {{Module.Cost.Money}}
+                <br>Requires:
+                <p ng-hide="Module.CostPS.Money == undefined">{{Module.CostPS.Money}}</p>
+                <p ng-hide="Module.CostPS.Oil == undefined">{{Module.CostPS.Oil}}</p>
+                <p ng-hide="Module.CostPS.Energy == undefined">{{Module.CostPS.Energy}}</p>
             </div>
-            <div class="clickable">
-                <img id="EnergyClicker" src="images/oil-icon.png">
-                <button ng-click="addOil()">Add Oil</button>
-            </div>
-            <div class="EnergyCount">
-                {{$root.Progress.Oil}} / {{$root.Progress.MaxOil}}
-            </div>
-            <div>Oil Per Second (OPS): {{$root.Progress.OilPS}} Barrels</div>
+            <div class="vertSpacer"></div>
+            <button ng-click="Buy(Module)">Buy</button>
         </div>
 
+    </div>
+    <div class="vertSpacer"></div>
+    <!-- Far Left. Contains the clicker, total unit ammount, and unit per second. !-->
+    <div class="clickerCollumn">
+        <div>
+            <h3 class="clickableTitle">Oil</h3>
+        </div>
+        <div class="clickable">
+            <img id="EnergyClicker" src="images/oil-icon.png">
+            <button ng-click="addOil()">Add Oil</button>
+        </div>
+        <div class="EnergyCount">
+            {{$root.Progress.Oil}} / {{$root.Progress.MaxOil}}
+        </div>
+        <div>Oil Per Second (OPS): {{$root.Progress.OilPS}} Barrels</div>
+    </div>
+
+    <!-- WRITTEN BY COCK ASIANS !-->

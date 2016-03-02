@@ -8,16 +8,68 @@ app.factory("LoopFactory", function($rootScope, $interval){
     var load = function(){
         if(!loaded){
             $interval(function() {
-                    $rootScope.Progress.Energy = addResource($rootScope.Progress.EnergyPS, $rootScope.Progress.Energy, $rootScope.Progress.MaxEnergy);
-                    $rootScope.Progress.Oil = addResource($rootScope.Progress.OilPS, $rootScope.Progress.Oil, $rootScope.Progress.MaxOil);
-                    $rootScope.Progress.Money = addResource($rootScope.Progress.MoneyPS, $rootScope.Progress.Money, $rootScope.Progress.MaxMoney);
+                     addResource();
+                     
             }, 1000);
         }
     };
     
-    var addResource = function(times, current, max){
+    
+    /*
+     $rootScope.Progress = {NegativeEnergy: 1, NegativeOil: 1, NegativeMoney: 1)
+     
+      
+    */
+    var addResource = function(){
         
-        //TODO: Refactor this method
+        for(var i = 0; i<$rootScope.ModulesOwned.length; i++){
+            var module = $rootScope.ModulesOwned[i];
+            
+            
+            module.Cost.Oil = module.Cost.Oil || 0;
+            module.Cost.Energy = module.Cost.Energy || 0;
+            module.Cost.Money = module.Cost.Money || 0;
+            
+            module.CostPS.Oil = module.CostPS.Oil || 0;
+            module.CostPS.Energy = module.CostPS.Energy || 0;
+            module.CostPS.Money = module.CostPS.Money || 0;
+             
+            module.Produces.Oil = module.Produces.Oil || 0;
+            module.Produces.Energy = module.Produces.Energy || 0;
+            module.Produces.Money = module.Produces.Money || 0;
+            
+            
+            if( ($rootScope.Progress.Energy - module.CostPS.Energy) < 0 || ($rootScope.Progress.Oil - module.CostPS.Oil) < 0 || ($rootScope.Progress.Money - module.CostPS.Money) < 0){
+                break;
+            }
+            
+            $rootScope.Progress.Energy -= module.CostPS.Energy;
+            $rootScope.Progress.Money -= module.CostPS.Money;
+            $rootScope.Progress.Oil -= module.CostPS.Oil;
+            
+
+            var amountAdded = Math.round(module.Produces.Energy); 
+            while(($rootScope.Progress.Energy < $rootScope.Progress.MaxEnergy) && (amountAdded > 0)){
+                $rootScope.Progress.Energy++; 
+                amountAdded--; 
+            }
+        
+            $rootScope.Progress.Money += module.Produces.Money;
+            
+            var amountAdded = Math.round(module.Produces.Oil); 
+            while(($rootScope.Progress.Oil < $rootScope.Progress.MaxOil) && (amountAdded > 0)){
+                $rootScope.Progress.Oil++; 
+                amountAdded--; 
+            }
+           
+            
+        }
+               
+
+   
+       
+       
+       /* //TODO: Refactor this method
         
         //Make sure to round number to nearest whole number
         var amountAdded = Math.round(times);
@@ -31,6 +83,8 @@ app.factory("LoopFactory", function($rootScope, $interval){
         current = Math.round(current);
         
         return current;
+        
+        */
     };
     
     return {

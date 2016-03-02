@@ -1,8 +1,17 @@
-
-    </div>
     <div class="bodyRow">
-        <!-- Designated space for ads located on the far right. !-->
-        <div class="adCollumn"></div>
+        <div class="adCollumn" flex flex-order="1">
+            <p>Oil: {{$root.Progress.Oil}}</p>
+            <p>Energy: {{$root.Progress.Energy}}</p>
+            <p>Money: {{$root.Progress.Money}}</p>
+            
+            <p>Oil Use: {{$root.Progress.NegOilPS}}</p>
+            <p>Energy Use: {{$root.Progress.NegEnergyPS}}</p>
+            <p>Money Use: {{$root.Progress.NegMoneyPS}}</p>
+            
+            <p>Oil Production: {{$root.Progress.OilPS}}</p>
+            <p>Energy Production: {{$root.Progress.EnergyPS}}</p>
+            <p>Money Production: {{$root.Progress.MoneyPS}}</p>
+        </div>
         <div class="vertSpacer"></div>
         <!-- Middle block, contains all the purchaseable things. !-->
         <div class="dataCollumn">
@@ -20,7 +29,7 @@
                     <br>MPS: {{Module.MoneyPS}}</div>
                 <div class="itemDesc">{{Module.Description}}</div>
                 <div class="vertSpacer"></div>
-                <div class="itemCost">Cost: {{Module.MoneyCost}}</div>
+                <div class="itemCost">Cost: {{Module.Cost.Money}}</div>
                 <div class="vertSpacer"></div>
                 <button ng-click="Buy(Module)">Buy</button>
             </div>
@@ -41,4 +50,4 @@
             </div>
             <div>Money Per Second (MPS): {{$root.Progress.MoneyPS}}</div>
         </div>
-
+ 

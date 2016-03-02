@@ -13,6 +13,10 @@ app.factory("SaveFactory", function($rootScope, $interval){
         
         progress = JSON.parse(progress) ;
         
+        
+        $rootScope.ModulesOwned = [];
+        
+        
         if(!progress) {
          $rootScope.Progress = {
             Energy: 0,
@@ -21,12 +25,15 @@ app.factory("SaveFactory", function($rootScope, $interval){
             Population: 0,
             MaxEnergy: 500,
             MaxOil: 100,
-            MaxMoney: 10000,
             EnergyPS: 0,
             MoneyPS: 0,
             OilPS: 0,
+            NegEnergyPS: 0,
+            NegOilPS: 0,
+            NegMoneyPS: 0,
             ModulesOwned: []
          };
+         
          
          return;
         }
@@ -37,11 +44,13 @@ app.factory("SaveFactory", function($rootScope, $interval){
         for(var i = 0; i<$rootScope.Progress.ModulesOwned.length; i++){
             for(var j = 0; j<$rootScope.Modules.length; j++){
                 if($rootScope.Progress.ModulesOwned[i].Name == $rootScope.Modules[j].Name){
+                    $rootScope.ModulesOwned.push($rootScope.Modules[j]);
                     $rootScope.Modules[j].Count = $rootScope.Progress.ModulesOwned[i].Count;
                 }
             }
         }    
         
+
         delete $rootScope.Progress.ModulesOwned;
     };
     
